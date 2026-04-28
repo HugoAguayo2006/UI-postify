@@ -1,17 +1,62 @@
-# React + Vite
+# UI Postify
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Interfaz de Postify hecha con React, Vite y Tailwind CSS.
 
-Currently, two official plugins are available:
+## Requisitos
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Node.js instalado.
+- npm instalado.
 
-## React Compiler
+## Instalacion
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Instala las dependencias del proyecto:
 
-## Expanding the ESLint configuration
+```bash
+npm install
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-# UI-postify
+## Correr en desarrollo
+
+Levanta el servidor local de Vite:
+
+```bash
+npm run dev
+```
+
+Despues abre la URL que aparezca en la terminal. Normalmente sera:
+
+```bash
+http://localhost:5173
+```
+
+## Scripts disponibles
+
+```bash
+npm run dev
+```
+
+Inicia el proyecto en modo desarrollo.
+
+```bash
+npm run build
+```
+
+Genera la version de produccion en la carpeta `dist/`.
+
+```bash
+npm run preview
+```
+
+Sirve localmente la version generada con `npm run build`.
+
+```bash
+npm run lint
+```
+
+Revisa el codigo con ESLint.
+
+## Variables de entorno
+
+Este proyecto puede usar variables locales en archivos `.env`. Esos archivos no se suben al repositorio porque suelen contener configuracion privada.
+
+Si necesitas documentar variables para el equipo, crea un archivo `.env.example` con nombres de ejemplo y sin secretos reales.
