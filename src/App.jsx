@@ -9,7 +9,7 @@ function App() {
     <>
       <ScrollToTop />
       <Navbar />
-      <main className="pb-14">
+      <main className="min-h-screen bg-[#050a0e] pb-16 text-white">
         <Outlet />
       </main>
       <Footer />
