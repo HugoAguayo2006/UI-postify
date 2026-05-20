@@ -1,16 +1,20 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import "./App.css";
+import { Outlet } from "react-router";
+import Navbar from "./components/navbar.jsx";
+import Footer from "./components/footer.jsx";
+import ScrollToTop from "./components/ScrollTop.jsx";
 
 function App() {
   return (
     <>
-      hello
+      <ScrollToTop />
+      <Navbar />
+      <main className="pb-14">
+        <Outlet />
+      </main>
+      <Footer />
     </>
-  )
-  
+  );
 }
 
-export default App
+export default App;
