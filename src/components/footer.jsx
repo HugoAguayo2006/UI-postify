@@ -1,4 +1,5 @@
 import { NavLink } from "react-router";
+import { createElement } from "react";
 import { HiHome } from "react-icons/hi";
 import { MdOutlineVideoLibrary } from "react-icons/md";
 import { TiMessages } from "react-icons/ti";
@@ -9,7 +10,7 @@ const navItems = [
   { icon: FaSearch, label: "Buscar", path: "/buscar" },
   { icon: MdOutlineVideoLibrary, label: "Reels", path: "/reels" },
   { icon: TiMessages, label: "Mensajes", path: "/mensajes" },
-  { icon: FaUser, label: "Perfil", path: "/profile/1" },
+  { icon: FaUser, label: "Perfil", path: "/profile/185ebaf9-2785-4b8d-8f90-004b16e54d7f" },
 ];
 
 function Footer() {
@@ -27,7 +28,7 @@ function Footer() {
               }`
             }
           >
-            <Icon className="h-7 w-7" />
+            {createElement(Icon, { className: "h-7 w-7" })}
           </NavLink>
         ))}
       </nav>
