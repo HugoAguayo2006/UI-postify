@@ -20,6 +20,26 @@ const getImagesFromPost = (post) => {
   return [post.image_url || post.image || post.url || fallbackImage];
 };
 
+const getLikesCount = (post) => {
+  if (typeof post.likes_count === "number") return post.likes_count;
+  if (typeof post.like_count === "number") return post.like_count;
+  if (typeof post.likesCount === "number") return post.likesCount;
+  if (typeof post.likes === "number") return post.likes;
+  if (Array.isArray(post.likes)) return post.likes.length;
+
+  return 0;
+};
+
+const getCommentsCount = (post) => {
+  if (typeof post.comments_count === "number") return post.comments_count;
+  if (typeof post.comment_count === "number") return post.comment_count;
+  if (typeof post.commentsCount === "number") return post.commentsCount;
+  if (typeof post.comments === "number") return post.comments;
+  if (Array.isArray(post.comments)) return post.comments.length;
+
+  return 0;
+};
+
 function Post() {
   const navigate = useNavigate();
   const { state } = useLocation();
@@ -68,6 +88,8 @@ function Post() {
       <div>
         {passedPosts.map((post, postIndex) => {
           const images = getImagesFromPost(post);
+          const likesCount = getLikesCount(post);
+          const commentsCount = getCommentsCount(post);
           const description = post.description || "Para alcanzar nuestros suenos, es necesario trabajar un dia si y el otro tambien";
 
           return (
@@ -104,18 +126,24 @@ function Post() {
                   <div className="flex items-center gap-5">
                     <div className="flex items-center gap-2">
                       <FaRegHeart className="h-8 w-8" />
-                      <span className="font-bold">{111 + postIndex}</span>
+                      <span className="font-bold">{likesCount}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <FaRegComment className="h-8 w-8" />
-                      <span className="font-bold">{38 + postIndex}</span>
+                      <span className="font-bold">{commentsCount}</span>
                     </div>
                     <FiSend className="h-8 w-8" />
                   </div>
                   <FaRegBookmark className="h-8 w-8" />
                 </div>
 
-                <p className="text-sm text-white/85">Les gusta a <span className="font-bold">paul_gvilchis</span> y otros</p>
+                <p className="text-sm text-white/85">
+                  {likesCount > 0 ? (
+                    <>Les gusta a <span className="font-bold">paul_gvilchis</span> y otros</>
+                  ) : (
+                    "Se el primero en indicar que te gusta"
+                  )}
+                </p>
                 <p className="mt-2 text-lg leading-snug">
                   <span className="font-bold">a_hugo___ </span>
                   {description}
