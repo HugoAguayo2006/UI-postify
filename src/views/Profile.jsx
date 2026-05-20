@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { FaChevronDown, FaPlus, FaRegUser, FaTh } from "react-icons/fa";
-import { FiMenu, FiPlus, FiUpload, FiX } from "react-icons/fi";
+import { FiMenu, FiPlus, FiUpload } from "react-icons/fi";
 import { MdOutlineSlowMotionVideo } from "react-icons/md";
 import { TbRepeat } from "react-icons/tb";
 import useFetch from "../hooks/useFetch";
@@ -46,7 +46,7 @@ const Profile = () => {
   const [files, setFiles] = useState([]);
   const [uploadError, setUploadError] = useState(null);
   const [uploading, setUploading] = useState(false);
-  const [selectedPost, setSelectedPost] = useState(null);
+  const navigate = useNavigate();
 
   const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{12}$/i;
   const isValidUserId = uuidRegex.test(userId);
@@ -210,7 +210,7 @@ const Profile = () => {
               key={getPostId(post, index)}
               className="relative aspect-square bg-white/10 text-left"
               type="button"
-              onClick={() => setSelectedPost(post)}
+              onClick={() => navigate("/post", { state: { posts, selectedIndex: index } })}
             >
               <img className="h-full w-full object-cover" src={getImageFromPost(post, index)} alt={post.description || "Post"} />
               {post.description && (
@@ -220,30 +220,6 @@ const Profile = () => {
               )}
             </button>
           ))}
-        </div>
-      )}
-
-      {selectedPost && (
-        <div className="fixed inset-0 z-[60] flex items-end bg-black/70 sm:items-center sm:justify-center">
-          <div className="max-h-[82vh] w-full max-w-md overflow-hidden rounded-t-3xl border border-white/10 bg-[#111820] sm:rounded-3xl">
-            <div className="flex items-center justify-between border-b border-white/10 px-5 py-4">
-              <div>
-                <p className="text-lg font-bold">JSON del post</p>
-                <p className="text-xs text-white/50">ID: {getPostId(selectedPost, 0)}</p>
-              </div>
-              <button
-                className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10"
-                type="button"
-                aria-label="Cerrar"
-                onClick={() => setSelectedPost(null)}
-              >
-                <FiX className="h-6 w-6" />
-              </button>
-            </div>
-            <pre className="max-h-[68vh] overflow-auto whitespace-pre-wrap break-words p-5 text-xs leading-relaxed text-green-200">
-              {JSON.stringify(selectedPost, null, 2)}
-            </pre>
-          </div>
         </div>
       )}
     </section>

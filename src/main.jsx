@@ -8,6 +8,7 @@ import Profile from './views/Profile.jsx';
 import Reels from './views/Reels.jsx';
 import Buscar from './views/Buscar.jsx';
 import Mensajes from './views/Mensajes.jsx';
+import Post from './views/Post.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -20,6 +21,7 @@ createRoot(document.getElementById('root')).render(
           <Route path="buscar" element={<Buscar />} />
           <Route path="mensajes" element={<Mensajes />} />
           <Route path="reels" element={<Reels />} />
+          <Route path="post" element={<Post />} />
         </Route>
       </Routes>
     </BrowserRouter>
